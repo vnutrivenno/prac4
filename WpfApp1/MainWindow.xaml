@@ -1,0 +1,140 @@
+﻿<Window x:Class="EngineeringCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Инженерный калькулятор" 
+        Height="600" 
+        Width="400"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style x:Key="CalculatorButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#FF4B4B4B"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF5E5E5E"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#FF3D3D3D"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#FF2D2D30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Display Area -->
+        <Border Grid.Row="0" Background="#FF2D2D30" Padding="10,10,10,5">
+            <TextBlock x:Name="ExpressionDisplay" 
+                       Text=""
+                       Foreground="#FFA0A0A0"
+                       FontSize="16"
+                       TextAlignment="Right"
+                       TextWrapping="Wrap"/>
+        </Border>
+
+        <Border Grid.Row="1" Background="#FF2D2D30" Padding="10,5,10,10">
+            <TextBlock x:Name="ResultDisplay" 
+                       Text="0"
+                       Foreground="White"
+                       FontSize="36"
+                       TextAlignment="Right"
+                       TextWrapping="Wrap"/>
+        </Border>
+
+        <!-- Buttons Grid -->
+        <Grid Grid.Row="2" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Row 0 -->
+            <Button x:Name="BtnClear" Grid.Row="0" Grid.Column="0" Content="C" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnBackspace" Grid.Row="0" Grid.Column="1" Content="⌫" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnModulus" Grid.Row="0" Grid.Column="2" Content="|x|" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnDivide" Grid.Row="0" Grid.Column="3" Content="÷" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnPower" Grid.Row="0" Grid.Column="4" Content="x^y" Style="{StaticResource CalculatorButtonStyle}"/>
+
+            <!-- Row 1 -->
+            <Button x:Name="BtnOpenBracket" Grid.Row="1" Grid.Column="0" Content="(" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnCloseBracket" Grid.Row="1" Grid.Column="1" Content=")" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnFactorial" Grid.Row="1" Grid.Column="2" Content="n!" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnMultiply" Grid.Row="1" Grid.Column="3" Content="×" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnSquareRoot" Grid.Row="1" Grid.Column="4" Content="√" Style="{StaticResource CalculatorButtonStyle}"/>
+
+            <!-- Row 2 -->
+            <Button x:Name="BtnPi" Grid.Row="2" Grid.Column="0" Content="π" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnE" Grid.Row="2" Grid.Column="1" Content="e" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnPowerOf10" Grid.Row="2" Grid.Column="2" Content="10^x" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnSubtract" Grid.Row="2" Grid.Column="3" Content="-" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnSquare" Grid.Row="2" Grid.Column="4" Content="x²" Style="{StaticResource CalculatorButtonStyle}"/>
+
+            <!-- Row 3 -->
+            <Button x:Name="BtnSin" Grid.Row="3" Grid.Column="0" Content="sin" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnCos" Grid.Row="3" Grid.Column="1" Content="cos" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnTan" Grid.Row="3" Grid.Column="2" Content="tan" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnAdd" Grid.Row="3" Grid.Column="3" Content="+" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnReciprocal" Grid.Row="3" Grid.Column="4" Content="1/x" Style="{StaticResource CalculatorButtonStyle}"/>
+
+            <!-- Row 4 -->
+            <Button x:Name="BtnLog" Grid.Row="4" Grid.Column="0" Content="log" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnLn" Grid.Row="4" Grid.Column="1" Content="ln" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnComma" Grid.Row="4" Grid.Column="2" Content="," Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="Btn7" Grid.Row="4" Grid.Column="3" Content="7" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="Btn8" Grid.Row="4" Grid.Column="4" Content="8" Style="{StaticResource CalculatorButtonStyle}"/>
+
+            <!-- Row 5 -->
+            <Button x:Name="BtnExp" Grid.Row="5" Grid.Column="0" Content="EXP" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnMod" Grid.Row="5" Grid.Column="1" Content="mod" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnAns" Grid.Row="5" Grid.Column="2" Content="Ans" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="Btn4" Grid.Row="5" Grid.Column="3" Content="4" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="Btn5" Grid.Row="5" Grid.Column="4" Content="5" Style="{StaticResource CalculatorButtonStyle}"/>
+
+            <!-- Row 6 -->
+            <Button x:Name="BtnPlusMinus" Grid.Row="6" Grid.Column="0" Content="+/-" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="Btn0" Grid.Row="6" Grid.Column="1" Content="0" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnDecimal" Grid.Row="6" Grid.Column="2" Content="." Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="Btn1" Grid.Row="6" Grid.Column="3" Content="1" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="Btn2" Grid.Row="6" Grid.Column="4" Content="2" Style="{StaticResource CalculatorButtonStyle}"/>
+
+            <!-- Row 7 -->
+            <Button x:Name="BtnEquals" Grid.Row="7" Grid.Column="0" Content="=" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="Btn3" Grid.Row="7" Grid.Column="1" Content="3" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="Btn6" Grid.Row="7" Grid.Column="2" Content="6" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="Btn9" Grid.Row="7" Grid.Column="3" Content="9" Style="{StaticResource CalculatorButtonStyle}"/>
+            <Button x:Name="BtnPercent" Grid.Row="7" Grid.Column="4" Content="%" Style="{StaticResource CalculatorButtonStyle}"/>
+        </Grid>
+    </Grid>
+    </Window>
